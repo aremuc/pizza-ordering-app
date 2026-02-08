@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Order</title>
+</head>
+<body>
+<h1>Create Pizza Order</h1>
+
+<form action="/order" method="post" th:object="${pizzaOrder}">
+
+    <label for="customerName">Customer Name</label>
+    <input id="customerName" type="text" th:field="*{customerName}" required>
+    <br><br>
+
+    <label for="size">Size</label>
+    <select id="size" th:field="*{size}" required>
+        <option value="">-- Select --</option>
+        <option th:each="s : ${T(com.example.assignment_1.model.Size).values()}"
+                th:value="${s}" th:text="${s}"></option>
+    </select>
+    <br><br>
+
+    <label for="crust">Crust</label>
+    <select id="crust" th:field="*{crust}" required>
+        <option value="">-- Select --</option>
+        <option th:each="c : ${T(com.example.assignment_1.model.Crust).values()}"
+                th:value="${c}" th:text="${c}"></option>
+    </select>
+    <br><br>
+
+    <p>Toppings</p>
+    <div th:each="t : ${T(com.example.assignment_1.model.Topping).values()}">
+        <label>
+            <input type="checkbox" th:field="*{toppings}" th:value="${t}">
+            <span th:text="${t}"></span>
+        </label>
+        <br>
+    </div>
+    <br>
+
+    <label for="quantity">Quantity</label>
+    <input id="quantity" type="number" th:field="*{quantity}" min="1" required>
+    <br><br>
+
+    <label>
+        <input type="checkbox" th:field="*{delivery}">
+        Delivery
+    </label>
+    <br><br>
+
+    <label for="deliveryAddress">Delivery Address</label>
+    <input id="deliveryAddress" type="text" th:field="*{deliveryAddress}">
+    <br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<p><a href="/">Back</a></p>
+</body>
+</html>
