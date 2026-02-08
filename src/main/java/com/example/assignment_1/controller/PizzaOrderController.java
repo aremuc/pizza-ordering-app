@@ -5,6 +5,7 @@ import com.example.assignment_1.service.PizzaOrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -59,13 +60,25 @@ public class PizzaOrderController {
         }
 
         pizzaOrderService.addOrder(pizzaOrder);
-        return "redirect:/orders";
+        return "redirect:/orders/" + pizzaOrder.getId();
     }
 
     @GetMapping("/orders")
     public String showOrders(Model model) {
         model.addAttribute("orders", pizzaOrderService.getAllOrders());
         return "orders";
+    }
+
+    @GetMapping("/orders/{id}")
+    public String orderSummary(@PathVariable int id, Model model) {
+        PizzaOrder order = pizzaOrderService.getOrderById(id);
+
+        if (order == null) {
+            return "redirect:/orders";
+        }
+
+        model.addAttribute("order", order);
+        return "order-summary";
     }
 
 }

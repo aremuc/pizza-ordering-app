@@ -73,6 +73,16 @@ public class PizzaOrderService {
             return 0;
             }
         }
+
+    public PizzaOrder getOrderById(int id) {
+        for (PizzaOrder o : pizzaOrders) {
+            if (o.getId() == id) return o;
+        }
+        return null;
     }
+
+}
+
+
 
 

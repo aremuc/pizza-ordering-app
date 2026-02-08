@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order Summary</title>
+</head>
+<body>
+
+<h1>Order Summary</h1>
+
+<p><b>Order ID:</b> <span th:text="${order.id}"></span></p>
+<p><b>Time:</b> <span th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+
+<hr>
+
+<p><b>Customer:</b> <span th:text="${order.customerName}"></span></p>
+<p><b>Size:</b> <span th:text="${order.size}"></span></p>
+<p><b>Crust:</b> <span th:text="${order.crust}"></span></p>
+<p><b>Toppings:</b>
+    <span th:text="${order.toppings == null ? '' : #strings.listJoin(order.toppings, ', ')}"></span>
+</p>
+<p><b>Quantity:</b> <span th:text="${order.quantity}"></span></p>
+
+<p><b>Delivery:</b> <span th:text="${order.delivery}"></span></p>
+<p th:if="${order.delivery}">
+    <b>Address:</b> <span th:text="${order.deliveryAddress}"></span>
+</p>
+
+<hr>
+
+<h3>Price Breakdown</h3>
+<p><b>Subtotal:</b> $<span th:text="${#numbers.formatDecimal(order.subtotal, 1, 2)}"></span></p>
+<p><b>Discount:</b> -$<span th:text="${#numbers.formatDecimal(order.discountAmount, 1, 2)}"></span></p>
+<p><b>Tax:</b> $<span th:text="${#numbers.formatDecimal(order.tax, 1, 2)}"></span></p>
+<p><b>Total:</b> $<span th:text="${#numbers.formatDecimal(order.total, 1, 2)}"></span></p>
+
+<br>
+<a href="/orders">Back to Orders</a> |
+<a href="/order">Create Another Order</a>
+
+</body>
+</html>
