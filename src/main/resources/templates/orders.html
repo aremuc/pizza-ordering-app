@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Size</th>
         <th>Crust</th>
+        <th>Toppings</th>
         <th>Qty</th>
         <th>Delivery</th>
         <th>Subtotal</th>
@@ -29,6 +30,7 @@
         <td th:text="${o.customerName}"></td>
         <td th:text="${o.size}"></td>
         <td th:text="${o.crust}"></td>
+        <td th:text="${o.toppings != null ? #strings.arrayJoin(o.toppings, ', ') : ''}"></td>
         <td th:text="${o.quantity}"></td>
         <td th:text="${o.delivery}"></td>
         <td th:text="${#numbers.formatDecimal(o.subtotal, 1, 2)}"></td>
