@@ -43,8 +43,8 @@ public class PizzaOrderController {
             pizzaOrder.setToppings(new ArrayList<>());
         }
 
-        if (pizzaOrder.getQuantity() <= 0) {
-            model.addAttribute("error", "Quantity must be greater than 0.");
+        if (pizzaOrder.getQuantity() < 1 || pizzaOrder.getQuantity() > 10) {
+            model.addAttribute("error", "Quantity must be between 1 and 10.");
             model.addAttribute("pizzaOrder", pizzaOrder);
             return "order-form";
         }
