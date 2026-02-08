@@ -34,4 +34,10 @@ public class PizzaOrderController {
         return "redirect:/";
     }
 
+    @GetMapping("/orders")
+    public String showOrders(Model model) {
+        model.addAttribute("orders", pizzaOrderService.getAllOrders());
+        return "orders";
+    }
+
 }
