@@ -33,6 +33,12 @@ public class PizzaOrderController {
     @PostMapping("/order")
     public String addOrder(PizzaOrder pizzaOrder, Model model) {
 
+        if (pizzaOrder.getCustomerName() == null || pizzaOrder.getCustomerName().trim().isEmpty()) {
+            model.addAttribute("error", "Customer name is required.");
+            model.addAttribute("pizzaOrder", pizzaOrder);
+            return "order-form";
+        }
+
         if (pizzaOrder.getToppings() == null) {
             pizzaOrder.setToppings(new ArrayList<>());
         }
