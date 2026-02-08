@@ -31,12 +31,12 @@
         <td th:text="${o.crust}"></td>
         <td th:text="${o.quantity}"></td>
         <td th:text="${o.delivery}"></td>
-        <td th:text="${o.subtotal}"></td>
-        <td th:text="${o.discountAmount}"></td>
-        <td th:text="${o.tax}"></td>
-        <td th:text="${o.total}"></td>
+        <td th:text="${#numbers.formatDecimal(o.subtotal, 1, 2)}"></td>
+        <td th:text="${#numbers.formatDecimal(o.discountAmount, 1, 2)}"></td>
+        <td th:text="${#numbers.formatDecimal(o.tax, 1, 2)}"></td>
+        <td th:text="${#numbers.formatDecimal(o.total, 1, 2)}"></td>
         <td th:text="${o.id}"></td>
-        <td th:text="${o.orderTime}"></td>
+        <td th:text="${#temporals.format(o.orderTime, 'MMM dd, yyyy HH:mm')}"></td>
 
     </tr>
     </tbody>
