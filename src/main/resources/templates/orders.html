@@ -16,6 +16,7 @@
         <th>Toppings</th>
         <th>Qty</th>
         <th>Delivery</th>
+        <th>Delivery Address</th>
         <th>Subtotal</th>
         <th>Discount</th>
         <th>Tax</th>
@@ -33,6 +34,7 @@
         <td th:text="${o.toppings != null ? #strings.arrayJoin(o.toppings, ', ') : ''}"></td>
         <td th:text="${o.quantity}"></td>
         <td th:text="${o.delivery}"></td>
+        <td th:text="${o.delivery} ? ${o.deliveryAddress} : ''"></td>
         <td th:text="${#numbers.formatDecimal(o.subtotal, 1, 2)}"></td>
         <td th:text="${#numbers.formatDecimal(o.discountAmount, 1, 2)}"></td>
         <td th:text="${#numbers.formatDecimal(o.tax, 1, 2)}"></td>
