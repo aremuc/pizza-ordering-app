@@ -3,16 +3,21 @@ package com.example.assignment_1.service;
 import com.example.assignment_1.model.PizzaOrder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PizzaOrderService {
 
+    private int nextId = 1;
+
     private List<PizzaOrder> pizzaOrders = new ArrayList<>();
 
     //add an order
     public void addOrder(PizzaOrder order) {
+        order.setId(nextId++);
+        order.setOrderTime(LocalDateTime.now());
         double base = calculateBasePrice(order);
         double toppings = calculateToppingsPrice(order);
         double subtotal = (base + toppings) * order.getQuantity();

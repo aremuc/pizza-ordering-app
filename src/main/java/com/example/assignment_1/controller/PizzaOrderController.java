@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+
 @Controller
 public class PizzaOrderController {
 
@@ -29,9 +31,23 @@ public class PizzaOrderController {
     }
 
     @PostMapping("/order")
-    public String addOrder(PizzaOrder pizzaOrder) {
+    public String addOrder(PizzaOrder pizzaOrder, Model model) {
+
+        if (pizzaOrder.getToppings() == null) {
+            pizzaOrder.setToppings(new ArrayList<>());
+        }
+
+        if (pizzaOrder.isDelivery()) {
+            String addr = pizzaOrder.getDeliveryAddress();
+            if (addr == null || addr.trim().isEmpty()) {
+                model.addAttribute("error", "Delivery address is required when delivery is selected.");
+                model.addAttribute("pizzaOrder", pizzaOrder); // keep what they typed
+                return "order-form";
+            }
+        }
+
         pizzaOrderService.addOrder(pizzaOrder);
-        return "redirect:/";
+        return "redirect:/orders";
     }
 
     @GetMapping("/orders")

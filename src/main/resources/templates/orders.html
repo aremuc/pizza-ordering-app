@@ -19,6 +19,8 @@
         <th>Discount</th>
         <th>Tax</th>
         <th>Total</th>
+        <th>ID</th>
+        <th>Time</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +35,9 @@
         <td th:text="${o.discountAmount}"></td>
         <td th:text="${o.tax}"></td>
         <td th:text="${o.total}"></td>
+        <td th:text="${o.id}"></td>
+        <td th:text="${o.orderTime}"></td>
+
     </tr>
     </tbody>
 </table>

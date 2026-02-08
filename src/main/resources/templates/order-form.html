@@ -5,6 +5,8 @@
 </head>
 <body>
 <h1>Create Pizza Order</h1>
+<p th:if="${error}" th:text="${error}"></p>
+
 
 <form action="/order" method="post" th:object="${pizzaOrder}">
 
