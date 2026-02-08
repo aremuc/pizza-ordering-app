@@ -37,6 +37,12 @@ public class PizzaOrderController {
             pizzaOrder.setToppings(new ArrayList<>());
         }
 
+        if (pizzaOrder.getQuantity() <= 0) {
+            model.addAttribute("error", "Quantity must be greater than 0.");
+            model.addAttribute("pizzaOrder", pizzaOrder);
+            return "order-form";
+        }
+
         if (pizzaOrder.isDelivery()) {
             String addr = pizzaOrder.getDeliveryAddress();
             if (addr == null || addr.trim().isEmpty()) {
